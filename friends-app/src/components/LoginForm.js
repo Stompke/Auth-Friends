@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const LoginForm = () => {
+
+const LoginForm = props => {
     const [ credentials, setCredentials ] = useState({
             username: '',
             password: ''
@@ -15,6 +16,8 @@ const LoginForm = () => {
         })
     }
 
+
+
     const login = e => {
         e.preventDefault();
 
@@ -23,6 +26,9 @@ const LoginForm = () => {
         .then(res => {
             console.log(res)
             localStorage.setItem('token', res.data.payload)
+            console.log(props)
+            props.history.push('/friends');
+
         })
         .catch(err => {
             console.log(err)

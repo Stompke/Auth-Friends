@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .App-logo {
@@ -22,6 +25,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
 }
 
 .App-link {
@@ -35,4 +39,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+li {
+  text-decoration: none;
+  padding-bottom: 20px;
 }

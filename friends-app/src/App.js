@@ -5,10 +5,12 @@ import LoginForm from './components/LoginForm';
 import Friends from './components/Friends';
 import PrivateRoute from './components/PrivateRoute';
 
-import { BrowserRouter as Route, Link, Switch } from "react-router-dom";
+
+import { Route, Link, Switch } from "react-router-dom";
+import { checkPropTypes } from 'prop-types';
 
 
-function App() {
+const App = props => {
   return (
     <div className="App">
       <ul>
@@ -24,10 +26,11 @@ function App() {
       </ul>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {}
+        
 
         <Switch>
-          <Route path='/login' component={LoginForm} />
+          <Route  path='/login' component={LoginForm} />
+
           <PrivateRoute path='/friends' component={Friends} />
         </Switch>
         
