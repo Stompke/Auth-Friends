@@ -2,8 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginForm from './components/LoginForm';
+import Friends from './components/Friends';
+import PrivateRoute from './components/PrivateRoute';
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Route, Link, Switch } from "react-router-dom";
 
 
 function App() {
@@ -16,6 +18,9 @@ function App() {
         <li>
           <Link to='/login' >Login</Link>
         </li>
+        <li>
+          <Link to='/friends' >Friends</Link>
+        </li>
       </ul>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -23,6 +28,7 @@ function App() {
 
         <Switch>
           <Route path='/login' component={LoginForm} />
+          <PrivateRoute path='/friends' component={Friends} />
         </Switch>
         
 
