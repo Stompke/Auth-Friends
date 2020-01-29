@@ -45,3 +45,17 @@ li {
   text-decoration: none;
   padding-bottom: 20px;
 }
+
+
+
+.friendsPage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.add-friend-form {
+  width: 100%;
+  padding: 100px;
+}

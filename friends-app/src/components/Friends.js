@@ -3,6 +3,8 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import Friend from './Friend';
 
+
+
 const Friends = () => {
     const [friendsList, setFriendsList ] = useState([])
     const [ newFriend, setNewFriend ] = useState({
@@ -11,6 +13,8 @@ const Friends = () => {
         age: null,
         email: ''
     })
+
+
 
 
     useEffect(() => {
@@ -41,19 +45,32 @@ const Friends = () => {
         })
     }
 
+    const deleteFriend = (id) => {
+        axiosWithAuth()
+        .delete('http://localhost:5000/api/friends/'+id)
+        .then(res => {
+          console.log(res)
+          setFriendsList(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
+
     return (
-        <div>
-            <div>
-            <h3>Add A Friend</h3>
-            <form onSubmit={addFriend}>
-                <input placeholder='Name' type='text' name='name' onChange={handleChange} />
-                <input placeholder='Age' type='num' name='age' onChange={handleChange} />
-                <input placeholder='email' type='text' name='email' onChange={handleChange} />
-                <button>Add New Friend</button>
-            </form>
+        <div className='friendsPage'>
+            <div className='add-friend-form'>
+                <h3>Add A Friend</h3>
+                <form onSubmit={addFriend}>
+                    <input placeholder='Name' type='text' name='name' onChange={handleChange} />
+                    <input placeholder='Age' type='num' name='age' onChange={handleChange} />
+                    <input placeholder='email' type='text' name='email' onChange={handleChange} />
+                    <button>Add New Friend</button>
+                </form>
+            </div>
+            {friendsList.map(item => <Friend deleteFriend={deleteFriend} key={item.id} friendData={item}/>)}
         </div>
-            {friendsList.map(item => <Friend key={item.id} friendData={item}/>)}
-        </div>
+        
 
     )
 }

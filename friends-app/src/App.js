@@ -25,7 +25,6 @@ const App = props => {
         </li>
       </ul>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         
 
         <Switch>
