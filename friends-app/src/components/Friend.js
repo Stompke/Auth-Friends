@@ -8,28 +8,64 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import Modal from '@material-ui/core/Modal';
 
 
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
 
-const useStyles = makeStyles({
-    card: {
-      width: 275,
-      margin: 30
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  });
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },    
+  card: {
+    width: 275,
+    margin: 30
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+}));
+
+
 
 const Friend = props => {
+
+const [modalStyle] = React.useState(getModalStyle);
+const [open, setOpen] = React.useState(false);
+
+const handleOpen = () => {
+  setOpen(true);
+};
+
+const handleClose = () => {
+  setOpen(false);
+};
 
 const classes = useStyles();
 const bull = <span className={classes.bullet}>•</span>;
@@ -55,9 +91,24 @@ const bull = <span className={classes.bullet}>•</span>;
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button onClick={() => props.deleteFriend(props.friendData.id)} size="small">delete</Button>
+                    <Button onClick={handleOpen}  size="small">delete</Button>
                 </CardActions>
             </Card>
+
+
+            <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={open}
+        onClose={handleClose}
+      >
+        <div style={modalStyle} className={classes.paper}>
+    <h2 id="simple-modal-title">Are you sure you want to delete {props.friendData.name}?</h2>
+
+          <button onClick={() => props.deleteFriend(props.friendData.id)}>delete for sure</button>
+
+        </div>
+      </Modal>
         </div>
     )
 }

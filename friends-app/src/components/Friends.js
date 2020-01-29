@@ -30,7 +30,7 @@ const Friends = () => {
         axiosWithAuth()
         .post('http://localhost:5000/api/friends', newFriend)
         .then(res => {
-            console.log(res)
+
             setFriendsList(res.data)
         })
         .catch(err => {
@@ -49,7 +49,7 @@ const Friends = () => {
         axiosWithAuth()
         .delete('http://localhost:5000/api/friends/'+id)
         .then(res => {
-          console.log(res)
+
           setFriendsList(res.data)
         })
         .catch(err => {
