@@ -32,6 +32,12 @@ const Friends = () => {
         .then(res => {
 
             setFriendsList(res.data)
+            setNewFriend({
+                id: Date.now(),
+                name: '',
+                age: '',
+                email: ''
+            })
         })
         .catch(err => {
             console.log(err)
@@ -62,9 +68,9 @@ const Friends = () => {
             <div className='add-friend-form'>
                 <h3>Add A Friend</h3>
                 <form onSubmit={addFriend}>
-                    <input placeholder='Name' type='text' name='name' onChange={handleChange} />
-                    <input placeholder='Age' type='num' name='age' onChange={handleChange} />
-                    <input placeholder='email' type='text' name='email' onChange={handleChange} />
+                    <input value={newFriend.name} placeholder='Name' type='text' name='name' onChange={handleChange} />
+                    <input value={newFriend.age} placeholder='Age' type='num' name='age' onChange={handleChange} />
+                    <input value={newFriend.email} placeholder='email' type='text' name='email' onChange={handleChange} />
                     <button>Add New Friend</button>
                 </form>
             </div>

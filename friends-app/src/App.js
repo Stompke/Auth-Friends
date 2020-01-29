@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LoginForm from './components/LoginForm';
 import Friends from './components/Friends';
@@ -7,7 +6,6 @@ import PrivateRoute from './components/PrivateRoute';
 
 
 import { Route, Link, Switch } from "react-router-dom";
-import { checkPropTypes } from 'prop-types';
 
 
 const App = props => {

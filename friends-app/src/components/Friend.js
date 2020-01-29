@@ -50,6 +50,12 @@ const useStyles = makeStyles(theme => ({
   pos: {
     marginBottom: 12,
   },
+  exit: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    margin: 5
+  }
 }));
 
 
@@ -74,7 +80,7 @@ const bull = <span className={classes.bullet}>•</span>;
 
 
     return (
-        <div >
+        <div>
             <Card className={classes.card}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -97,18 +103,17 @@ const bull = <span className={classes.bullet}>•</span>;
 
 
             <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div style={modalStyle} className={classes.paper}>
-    <h2 id="simple-modal-title">Are you sure you want to delete {props.friendData.name}?</h2>
-
-          <button onClick={() => props.deleteFriend(props.friendData.id)}>delete for sure</button>
-
-        </div>
-      </Modal>
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              open={open}
+              onClose={handleClose}
+            >
+              <div style={modalStyle} className={classes.paper}>
+                <h2 id="simple-modal-title">Are you sure you want to delete {props.friendData.name}?</h2>
+                <button onClick={() => props.deleteFriend(props.friendData.id)}>delete for sure</button>
+                <button className={classes.exit} onClick={handleClose}>✘</button>
+              </div>
+            </Modal>
         </div>
     )
 }
